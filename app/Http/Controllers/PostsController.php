@@ -5,7 +5,8 @@ namespace Bloggy\Http\Controllers;
 use Bloggy\Post;
 use Bloggy\Http\Requests;
 use Bloggy\Http\Controllers\Controller;
-use Request;
+use Request, Auth;
+use Bloggy\Http\Requests\CreatePostRequest;
 
 class PostsController extends Controller
 {
@@ -36,9 +37,10 @@ class PostsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {
-        Post::create(Request::all());
+        $post = new Post($request->all());
+        Auth::user()->posts()->save($post); //Create a new post tied to the current user
         return redirect("posts");
     }
 

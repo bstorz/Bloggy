@@ -12,6 +12,6 @@ class Post extends Model
         "author_id"
     ];
     public function author(){
-        $this->belongsTo("App\Author");
+        $this->belongsTo("Bloggy\Author");
     }
 }

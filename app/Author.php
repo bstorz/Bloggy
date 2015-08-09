@@ -33,7 +33,7 @@ class Author extends Model implements AuthenticatableContract, CanResetPasswordC
      */
     protected $hidden = ['password', 'remember_token'];
 
-    public function post(){
-        return $this->hasMany("App\Post");
+    public function posts(){
+        return $this->hasMany("Bloggy\Post");
     }
 }
