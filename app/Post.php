@@ -12,6 +12,9 @@ class Post extends Model
         "author_id"
     ];
     public function author(){
-        $this->belongsTo("Bloggy\Author");
+        return $this->belongsTo("Bloggy\Author");
+    }
+    public function comments(){
+        return $this->hasMany("Bloggy\Comment");
     }
 }

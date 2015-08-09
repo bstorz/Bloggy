@@ -3,33 +3,33 @@
 namespace Bloggy\Http\Controllers;
 
 use Request, Auth, Session;
-use Bloggy\Post;
+use Bloggy\Comment;
 use Bloggy\Http\Requests;
 use Bloggy\Http\Controllers\Controller;
-use Bloggy\Http\Requests\CreatePostRequest;
+use Bloggy\Http\Requests\CreateCommentRequest;
 
-class PostsController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index()
+    /*public function index()
     {
-        $posts = Post::latest("updated_at")->paginate(10);
+        $posts = Post::latest("updated_at")->get();
         return view("posts.index")->with("posts",$posts);
-    }
+    }*/
 
     /**
      * Show the form for creating a new resource.
      *
      * @return Response
      */
-    public function create()
+    /*public function create()
     {
         return view("posts.create");
-    }
+    }*/
 
     /**
      * Store a newly created resource in storage.
@@ -37,12 +37,12 @@ class PostsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(CreatePostRequest $request)
+    public function store(CreateCommentRequest $request)
     {
-        Auth::user()->posts()->create($request->all()); //Create a new post tied to the current user
+        $test = Auth::user()->comments()->create($request->all()); //Create a new post tied to the current user
 
-        session()->flash("flash_message","Your post has been made.");
-        return redirect("posts");
+        session()->flash("flash_message","Your comment has been made.");
+        return redirect()->route("posts.show",[$request->post_id]);
     }
 
     /**
@@ -51,11 +51,11 @@ class PostsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    /*public function show($id)
     {
         $post = Post::findOrFail($id);
         return view("posts.show")->with("post",$post);
-    }
+    }*/
 
     /**
      * Show the form for editing the specified resource.
@@ -65,8 +65,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::findOrFail($id);
-        return view("posts.edit",compact("post"));
+        $comment = Comment::findOrFail($id);
+        return view("comments.edit",compact("comment"));
     }
 
     /**
@@ -78,9 +78,9 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post = Post::findOrFail($id);
-        $post->update(Request::all());
-        return redirect()->route("posts.show",[$id]);
+        $comment = Comment::findOrFail($id);
+        $comment->update(Request::all());
+        return redirect()->route("posts.show",[$comment->post_id]);
     }
 
     /**
@@ -91,13 +91,11 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::findOrFail($id);
-        $post->delete();
+        $comment = Comment::findOrFail($id);
+        $post_id = $comment->post_id;
+        $comment->delete();
 
-        session()->flash("flash_message","Your post has been deleted.");
-        return redirect("posts");
-    }
-    public function feed(){
-        return \Response::json(Post::latest("updated_at")->get());
+        session()->flash("flash_message","Your comment has been deleted.");
+        return redirect()->route("posts.show",[$post_id]);
     }
 }

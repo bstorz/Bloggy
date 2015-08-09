@@ -36,4 +36,7 @@ class Author extends Model implements AuthenticatableContract, CanResetPasswordC
     public function posts(){
         return $this->hasMany("Bloggy\Post");
     }
+    public function comments(){
+        return $this->hasMany("Bloggy\Comment");
+    }
 }

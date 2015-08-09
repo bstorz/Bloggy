@@ -8,4 +8,5 @@
         <div>{{ $post->content }}</div>
     </article>
     @endforeach
+    {!! $posts->render() !!}
 @stop

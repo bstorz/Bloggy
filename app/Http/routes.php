@@ -15,7 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('posts/feed', 'PostsController@feed');
 Route::resource("posts","PostsController");
+Route::resource("comments","CommentsController");
+Route::resource("authors","AuthorsController");
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
