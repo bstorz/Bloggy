@@ -14,10 +14,22 @@ class CreateStarterTables extends Migration
     {
         Schema::create('authors', function (Blueprint $table) {
             $table->increments('id');
+
             $table->string('first_name');
             $table->string('last_name');
+
+            $table->string('email')->unique();
+            $table->string('password', 60);
+            $table->rememberToken();
+
             $table->timestamps();
         });
+        /*Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token')->index();
+            $table->timestamp('created_at');
+        });*/
+
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('author_id');
@@ -42,6 +54,7 @@ class CreateStarterTables extends Migration
     public function down()
     {
         Schema::drop('authors');
+        //Schema::drop('password_resets');
         Schema::drop('posts');
         Schema::drop('comments');
     }

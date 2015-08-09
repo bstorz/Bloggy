@@ -2,7 +2,7 @@
 
 namespace Bloggy\Http\Controllers\Auth;
 
-use Bloggy\User;
+use Bloggy\Author;
 use Validator;
 use Bloggy\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -23,6 +23,8 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+    protected $redirectPath = '/posts';
+
     /**
      * Create a new authentication controller instance.
      *
@@ -42,8 +44,9 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:authors',
             'password' => 'required|confirmed|min:6',
         ]);
     }
@@ -52,12 +55,13 @@ class AuthController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return User
+     * @return Author
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        return Author::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
