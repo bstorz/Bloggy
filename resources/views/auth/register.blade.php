@@ -62,7 +62,7 @@
     </div>
     <div class="row">
         <div class="small-12 column">
-            {!! Form::submit("Login", ["class"=>"small radius button"]) !!}
+            {!! Form::submit("Register and Login", ["class"=>"small radius button"]) !!}
         </div>
     </div>
 {!! Form::close() !!}
