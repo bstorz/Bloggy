@@ -11,7 +11,7 @@
             <div class="excerpt">
                 {{ substr($post->content,0,255)."..." }}
             </div>
-            <div class="continue"><a href="{{ action("PostsController@show", [$post->id]) }}">Continue Reading...</a></div>
+            <div class="continue"><a href="{{ action("PostsController@show", [$post->id]) }}" class="tiny radius secondary button">Continue Reading...</a></div>
         </article>
     </div>
     @endforeach

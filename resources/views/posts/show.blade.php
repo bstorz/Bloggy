@@ -11,12 +11,12 @@
                             <a href="{{ action("AuthorsController@show", [$post->author->id]) }}" rel="author">{{ $post->author->first_name }} {{ $post->author->last_name }}</a> on {{ $post->created_at }}
                         </div>
                     </div>
-                    <div class="small-4 columns controls-panel">
-                        <a href="{{ action("PostsController@edit", [$post->id]) }}" class="small radius button">Edit Post</a>
+                    <ul class="small-4 columns controls-panel button-group radius">
+                        <a href="{{ action("PostsController@edit", [$post->id]) }}" class="small button">Edit Post</a>
                         {!! Form::open(array('method' => 'delete', 'action' => ['PostsController@destroy', $post->id],"class"=>"controls")) !!}
-                        <button type="submit" class="small radius alert button">Delete Post</button>
+                        <button type="submit" class="small alert button">Delete Post</button>
                         {!! Form::close() !!}
-                    </div>
+                    </ul>
                 </header>
                 <div class="content">{!! $post->content !!}</div>
             </article>
@@ -32,8 +32,7 @@
             @foreach ($post->comments as $comment)
             <article class="comment">
                 <header>
-                    On {{ $comment->created_at }}, <a href="">
-                    {{ $comment->author->first_name }} {{$comment->author->last_name}}</a> writes:
+                    On {{ $comment->created_at }}, <a href="{{ action("AuthorsController@show", [$post->author->id]) }}"> {{ $comment->author->first_name }} {{$comment->author->last_name}}</a> writes:
                 </header>
                 <div>{!! $comment->content !!}</div>
 

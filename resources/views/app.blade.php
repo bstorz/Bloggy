@@ -57,8 +57,8 @@
         <footer class="page-footer">
             <div class="row">
                 <div class="small-12 columns">
-                    <div>Copyright &copy; 2015 Bloggy, Inc.</div>
-                    <div>A Subsidiary of Not Real Co.</div>
+                    <div>Copyright &copy; 2015 Bloggy.dev, Inc.</div>
+                    <div>A Subsidiary of <em>Not A Real Company Co.</em></div>
                 </div>
             </div>
         </footer>

@@ -10,26 +10,14 @@ use Bloggy\Http\Requests\CreateCommentRequest;
 
 class CommentsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    /*public function index()
-    {
-        $posts = Post::latest("updated_at")->get();
-        return view("posts.index")->with("posts",$posts);
-    }*/
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    /*public function create()
-    {
-        return view("posts.create");
-    }*/
+    public function __construct(){
+        $this->middleware("auth");
+    }
+
+    public function index(){
+        return redirect()->route('posts.index');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -43,30 +31,6 @@ class CommentsController extends Controller
 
         session()->flash("flash_message","Your comment has been made.");
         return redirect()->route("posts.show",[$request->post_id]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    /*public function show($id)
-    {
-        $post = Post::findOrFail($id);
-        return view("posts.show")->with("post",$post);
-    }*/
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        $comment = Comment::findOrFail($id);
-        return view("comments.edit",compact("comment"));
     }
 
     /**

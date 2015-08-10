@@ -15,10 +15,17 @@ Route::get('/', function () {
     return redirect()->route('posts.index');
 });
 
+// Posts
 Route::get('posts/feed', 'PostsController@feed');
 Route::resource("posts","PostsController");
-Route::resource("comments","CommentsController");
-Route::resource("authors","AuthorsController");
+
+// Comments - this could be cleaner
+Route::resource("comments","CommentsController",['except' => ['show', 'create', 'edit']]);
+
+// Authors
+Route::get('authors/', 'AuthorsController@index');
+Route::get('authors/index', 'AuthorsController@index');
+Route::get('authors/{authors}/show', 'AuthorsController@show');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

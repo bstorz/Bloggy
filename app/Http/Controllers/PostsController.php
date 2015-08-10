@@ -10,6 +10,11 @@ use Bloggy\Http\Requests\CreatePostRequest;
 
 class PostsController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware("auth",["except"=>["index","show","feed"]]);
+    }
+
     /**
      * Display a listing of the resource.
      *
