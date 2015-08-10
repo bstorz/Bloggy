@@ -76,10 +76,12 @@ class PostsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(CreatePostRequest $request, $id)
     {
         $post = Post::findOrFail($id);
         $post->update(Request::all());
+
+        session()->flash("flash_message","Your post has been edited.");
         return redirect()->route("posts.show",[$id]);
     }
 

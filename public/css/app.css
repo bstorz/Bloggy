@@ -1,0 +1,103 @@
+html,body{
+    font: "Helvetica Neue" 13px/1.5;
+    font-weight: 300;
+}
+footer{
+    background: #333;
+    color: #999;
+    font-family: "Catamaran", "Helvetica Neue", sans-serif;
+    margin-top: 30px;
+    padding: 30px;
+    text-align: center;
+}
+
+.posts {
+    margin: 20px 0;
+}
+
+.post {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.title{
+    font-size: 24px;
+    font-weight: bold;
+}
+.title a{
+    color: #000;
+}
+
+label.title{
+    font-weight: bold;
+    font-size: inherit;
+    margin-bottom: 5px;
+}
+
+.comment {
+    border-bottom: 1px solid #ccc;
+    padding: 20px 0;
+}
+.comment:first-of-type{
+    padding-top: 0;
+}
+.comment header{
+    color: #999;
+    font-size: 12px;
+
+}
+#new-comment{
+    margin-top: 30px;
+}
+.small-textbox{
+    height: 50px;
+}
+.post header{
+    color: #999;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+.continue{
+    margin-top: 15px;
+}
+.page-footer{
+    font-weight: 100;
+    letter-spacing: 1px;
+}
+.page-wrapper{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.controls-panel{
+    text-align: right;
+    vertical-align: middle;;
+}
+form.controls{
+    display: inline-block;
+}
+.delete-comment{
+    margin-top:5px;
+}
+
+.notifications{
+    margin-top:20px;
+}
+h1.heading{
+    font-size: 42px;
+    font-weight: 100;
+}
+
+.author-listing{
+    margin-bottom: 20px;
+}
+
+.top-bar a{
+    font-family: "Catamaran", "Helvetica Neue", sans-serif;
+    font-weight: 100;
+    letter-spacing: 1px;
+}
+.login-form{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

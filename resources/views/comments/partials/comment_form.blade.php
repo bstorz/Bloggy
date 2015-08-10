@@ -9,12 +9,6 @@
      </ul>
 </div>
 @endif
-
-<div class="formGroup">
-{!! Form::label("content","Content") !!}
-{!! Form::textarea("content", null, ["class"=>"form-control"]) !!}
-</div>
-
-<div class="formGroup">
-{!! Form::submit($submitText, ["class"=>"btn btn-primary form-control"]) !!}
-</div>
+@include("utilities.toolbar")
+{!! Form::textarea("content", null, ["size"=>"50x5","class"=>"small-textbox wysiwyg","placeholder"=>"Add Your Comment","aria-label"=>"Add Your Comment"]) !!}
+{!! Form::submit($submitText, ["class"=>"button radius"]) !!}
